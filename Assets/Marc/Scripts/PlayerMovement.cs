@@ -4,22 +4,24 @@ public class PlayerMovement : MonoBehaviour
 {
     //A / D: Move Left / Right
     //Spacebar: Jump
-    //Left Shift: Dash
-
-    //TODO:
-    //Implement Dash
-    //Fix "Wall Cling" Glitch
-    //Coyote Time???
 
     public float moveSpd = 8f;
-    public float jumpSpd = 10f;
-    public float groundCheckRadius = 0.2f;
+    public float jumpSpd = 14f;
+    public float dashSpd = 20f;
 
-    private float moveDir;
     private bool onGround;
+    private bool lWallHit;
+    private bool rWallHit;
+    private float coyoteTime = 5.0f;
+    private float moveDir = 0.0f;
 
     public PlayerInput input;
-    public Transform groundCheck;
+    public Transform groundCheckA;
+    public Transform lWallCheckA;
+    public Transform rWallCheckA;
+    public Transform groundCheckB;
+    public Transform lWallCheckB;
+    public Transform rWallCheckB;
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
@@ -36,25 +38,32 @@ public class PlayerMovement : MonoBehaviour
         input.Player.Jump.performed += ctx => Jump();
         input.Player.Jump.canceled += ctx => JumpCancel();
 
-        input.Player.Dash.performed += ctx => Dash();
-
         input.Enable();
     }
 
     //Move player left or right
     private void Update(){
+        if ((moveDir < -0.1) && (lWallHit)) { moveDir = 0.0f; }
+        if ((moveDir > 0.1) && (rWallHit)) { moveDir = 0.0f; }
         rb.linearVelocity = new Vector2(moveDir * moveSpd, rb.linearVelocity.y);
     }
 
     //Check if player is on ground and update onGround accordingly
     private void FixedUpdate(){
-        onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        onGround = Physics2D.OverlapArea(groundCheckA.position, groundCheckB.position, groundLayer);
+        lWallHit = Physics2D.OverlapArea(lWallCheckA.position, lWallCheckB.position, groundLayer);
+        rWallHit = Physics2D.OverlapArea(rWallCheckA.position, rWallCheckB.position, groundLayer);
+
+        if (onGround){
+            coyoteTime = 10.0f;
+        }else{ coyoteTime --; }
     }
 
     //Jump if player is on ground
     private void Jump(){
-        if (onGround){
+        if (coyoteTime > 0.0f){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpd);
+            coyoteTime = 0.0f;
         }
     }
 
@@ -63,10 +72,5 @@ public class PlayerMovement : MonoBehaviour
         if ((!onGround) && (rb.linearVelocity.y > 0)){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, (rb.linearVelocity.y * 0.35f));
         }
-    }
-
-    //Player dash
-    private void Dash(){
-
     }
 }
