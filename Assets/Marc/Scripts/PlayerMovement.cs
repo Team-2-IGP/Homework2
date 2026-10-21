@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
     //A / D: Move Left / Right
     //Spacebar: Jump
 
+    public int curHP = 100;
+    public int maxHP = 100;
+
     public float moveSpd = 8f;
     public float jumpSpd = 14f;
     public float dashSpd = 20f;
@@ -72,5 +75,15 @@ public class PlayerMovement : MonoBehaviour
         if ((!onGround) && (rb.linearVelocity.y > 0)){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, (rb.linearVelocity.y * 0.35f));
         }
+    }
+
+    private void killPlayer(){
+        
+    }
+
+    public void changeHP(int hpChange){
+        curHP += hpChange;
+        if (curHP <= 0) { killPlayer(); }
+        if (curHP > maxHP) { curHP = maxHP; }
     }
 }
