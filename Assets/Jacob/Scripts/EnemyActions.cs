@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class EnemyActions : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private BoxCollider2D boxCollider;
+
+    private SpriteRenderer sr;
 
     public float moveSpeed = 5f;
     float horizontalMovement = 1; //positive - right, negative - left, 0 - not moving
@@ -16,9 +18,7 @@ public class EnemyActions : MonoBehaviour
     public float changeDelay = 2f; //time in seconds
     float nextChange = 0f;  // 0 is default, should not register it
 
-    //Sorry, Jacob, for modifying your code, but it was the only way I could figure this out without causing a ton of bugs. -Marc
-    public PlayerMovement player; //Player object reference.
-    public int enemyDamage = -5; //Amount of damage enemy should deal.
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,9 +27,13 @@ public class EnemyActions : MonoBehaviour
         //grab other elements attached to this GO for use
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+
 
         //set layer masks
         interactLayer = LayerMask.GetMask("walls", "Enemy");
+
+        
     }
 
     // Update is called once per frame
@@ -42,6 +46,8 @@ public class EnemyActions : MonoBehaviour
         if(boxCollider.IsTouchingLayers(interactLayer) && horizontalMovement != 0 && Time.time >= nextChange) {
             horizontalMovement = 0;
             nextChange = Time.time + changeDelay;
+            Debug.Log("hit wall");
+            Debug.Log(nextChange);
         }
         
         //change direction
@@ -57,14 +63,7 @@ public class EnemyActions : MonoBehaviour
         }
     }
 
-    //Collide with player, check if enemy should be destroyed.
-    void OnCollisionEnter2D(Collision2D collide){
-        if(collide.gameObject.tag == "Player"){
-            if (player.enemyHurt() == true){
-                Destroy(gameObject);
-            }else{
-                player.changeHP(enemyDamage);
-            }
-        }
-    }
+    
 }
+
+
