@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyActions : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private BoxCollider2D boxCollider;
 
     private SpriteRenderer sr;
@@ -18,10 +18,7 @@ public class EnemyActions : MonoBehaviour
     public float changeDelay = 2f; //time in seconds
     float nextChange = 0f;  // 0 is default, should not register it
 
-    //total enemy count number
-    public static int enemyTotal = 0;
-    //total defeated enemies
-    public static int enemyDown = 0;
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,7 +33,7 @@ public class EnemyActions : MonoBehaviour
         //set layer masks
         interactLayer = LayerMask.GetMask("walls", "Enemy");
 
-        enemyTotal++;
+        
     }
 
     // Update is called once per frame
@@ -66,20 +63,7 @@ public class EnemyActions : MonoBehaviour
         }
     }
 
-    public void killEnemy(){
-        enemyDown++;
-        sr.enabled = false;
-        rb.simulated = false;
-        boxCollider.enabled = false;
-    }
-
-    public static int getEnemyTotal(){
-        return enemyTotal;
-    }
-
-    public static int getEnemyDown(){
-        return enemyDown;
-    }
+    
 }
 
 
