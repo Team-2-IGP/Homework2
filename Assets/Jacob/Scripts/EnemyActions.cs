@@ -66,16 +66,16 @@ public class EnemyActions : MonoBehaviour
         }
     }
 
-    void killEnemy(){
+    public void killEnemy(){
         enemyDown++;
         sr.enabled = false;
     }
 
-    int getEnemyTotal(){
+    public static int getEnemyTotal(){
         return enemyTotal;
     }
 
-    int getEnemyDown(){
+    public static int getEnemyDown(){
         return enemyDown;
     }
 }
