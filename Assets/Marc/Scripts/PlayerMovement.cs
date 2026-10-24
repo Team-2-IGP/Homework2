@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform rWallCheckB;
     public LayerMask groundLayer;
 
+    public LayerMask enemyLayer;
+    public BoxCollider2D hurtBox;
+    private bool enemyDamage;
+
     private Rigidbody2D rb;
 
     //Set up player input (new input system) and rigidbody.
@@ -58,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         rWallHit = Physics2D.OverlapArea(rWallCheckA.position, rWallCheckB.position, groundLayer);
 
         if (onGround){
-            coyoteTime = 10.0f;
+            coyoteTime = 5.0f;
         }else{ coyoteTime --; }
     }
 
@@ -77,13 +81,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void killPlayer(){
-        
+    public bool enemyHurt(){
+        enemyDamage = Physics2D.OverlapArea(groundCheckA.position, groundCheckB.position, enemyLayer);
+        if (hurtBox.IsTouchingLayers(enemyLayer)){ return false; }
+        if (enemyDamage) return true;
+        else return false;
     }
 
     public void changeHP(int hpChange){
         curHP += hpChange;
         if (curHP <= 0) { killPlayer(); }
         if (curHP > maxHP) { curHP = maxHP; }
+    }
+
+    private void killPlayer(){
+
     }
 }
