@@ -16,6 +16,9 @@ public class EnemyActions : MonoBehaviour
     public float changeDelay = 2f; //time in seconds
     float nextChange = 0f;  // 0 is default, should not register it
 
+    //Sorry, Jacob, for modifying your code, but it was the only way I could figure this out without causing a ton of bugs. -Marc
+    public PlayerMovement player; //Player object reference.
+    public int enemyDamage = -5; //Amount of damage enemy should deal.
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +54,17 @@ public class EnemyActions : MonoBehaviour
             horizontalMovement = 1;
             moveLeft = false;
             nextChange = Time.time + 0.05f; //buffer to get off the wall
+        }
+    }
+
+    //Collide with player, check if enemy should be destroyed.
+    void OnCollisionEnter2D(Collision2D collide){
+        if(collide.gameObject.tag == "Player"){
+            if (player.enemyHurt() == true){
+                Destroy(gameObject);
+            }else{
+                player.changeHP(enemyDamage);
+            }
         }
     }
 }
