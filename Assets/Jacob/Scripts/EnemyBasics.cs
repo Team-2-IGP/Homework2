@@ -12,6 +12,9 @@ public class EnemyBasics : MonoBehaviour
     //total defeated enemies
     public static int enemyDown = 0;
 
+    //Sorry, Jacob, for modifying your code, but it was the only way I could figure this out without causing a ton of bugs. -Marc
+    public PlayerMovement player; //Player object reference.
+    public int enemyDamage = -5; //Amount of damage enemy should deal.
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,5 +48,16 @@ public class EnemyBasics : MonoBehaviour
 
     public static int getEnemyDown(){
         return enemyDown;
+    }
+
+    //Collide with player, check if enemy should be destroyed.
+    void OnCollisionEnter2D(Collision2D collide){
+        if(collide.gameObject.tag == "Player"){
+            if (player.enemyHurt() == true){
+                killEnemy();
+            }else{
+                player.changeHP(enemyDamage);
+            }
+        }
     }
 }
