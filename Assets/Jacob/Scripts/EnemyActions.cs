@@ -69,6 +69,8 @@ public class EnemyActions : MonoBehaviour
     public void killEnemy(){
         enemyDown++;
         sr.enabled = false;
+        rb.simulated = false;
+        boxCollider.enabled = false;
     }
 
     public static int getEnemyTotal(){
