@@ -12,7 +12,6 @@ public class EnemyBasics : MonoBehaviour
     //total defeated enemies
     public static int enemyDown = 0;
 
-    //Sorry, Jacob, for modifying your code, but it was the only way I could figure this out without causing a ton of bugs. -Marc
     private GameObject playerObject;
     private PlayerMovement player; //Player object reference.
     public int enemyDamage = -5; //Amount of damage enemy should deal.
