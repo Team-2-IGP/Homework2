@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public int curHP = 100;
     public int maxHP = 100;
+    public HealthBar HPView;
 
     public float moveSpd = 8f;
     public float jumpSpd = 14f;
@@ -91,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void changeHP(int hpChange){
         curHP += hpChange;
+        HPView.SetHealth(curHP);
         if (curHP <= 0) { killPlayer(); }
         if (curHP > maxHP) { curHP = maxHP; }
     }
