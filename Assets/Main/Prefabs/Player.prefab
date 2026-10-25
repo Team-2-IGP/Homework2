@@ -370,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6385789231058592521}
   - component: {fileID: 348431417639561293}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: hurtCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
