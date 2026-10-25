@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -95,6 +96,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void killPlayer(){
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
