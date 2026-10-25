@@ -62,12 +62,16 @@ public class EnemyBasics : MonoBehaviour
     //Collide with player, check if enemy should be destroyed.
     void OnCollisionEnter2D(Collision2D collide){
         if(collide.gameObject.tag == "Player"){
-            Debug.Log("contacted player");
             if (player.enemyHurt() == true){
                 killEnemy();
             }else{
                 player.changeHP(enemyDamage);
             }
         }
+
+        if(collide.gameObject.tag == "FallZone"){
+            killEnemy();
+        }
+
     }
 }
