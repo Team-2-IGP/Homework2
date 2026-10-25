@@ -8,7 +8,7 @@ public class EnemyActions : MonoBehaviour
     private SpriteRenderer sr;
 
     public float moveSpeed = 5f;
-    float horizontalMovement = 1; //positive - right, negative - left, 0 - not moving
+    float horizontalMovement = 0; //positive - right, negative - left, 0 - not moving
     public bool moveLeft = false;
 
     //to check if needs to turn around
@@ -31,7 +31,13 @@ public class EnemyActions : MonoBehaviour
 
 
         //set layer masks
-        interactLayer = LayerMask.GetMask("walls", "Enemy");
+        interactLayer = LayerMask.GetMask("walls", "Enemy", "player");
+
+        if(moveLeft){
+            horizontalMovement = -1;
+        }else{
+            horizontalMovement = 1;
+        }
 
         
     }

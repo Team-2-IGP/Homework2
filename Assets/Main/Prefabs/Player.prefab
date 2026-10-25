@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3758080035077229099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rWallCheckA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1600068968919170203}
   - component: {fileID: 7772857519994784455}
   - component: {fileID: 6572067655482243823}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4059275564175340013}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rWallCheckB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7807245242964062876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lWallCheckB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5725846234551573715}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: groundCheckA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6739692010446611957}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lWallCheckA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6385789231058592521}
   - component: {fileID: 348431417639561293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hurtCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9165537689225813510}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: groundCheckB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
