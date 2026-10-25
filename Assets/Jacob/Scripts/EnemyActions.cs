@@ -52,8 +52,6 @@ public class EnemyActions : MonoBehaviour
         if(boxCollider.IsTouchingLayers(interactLayer) && horizontalMovement != 0 && Time.time >= nextChange) {
             horizontalMovement = 0;
             nextChange = Time.time + changeDelay;
-            Debug.Log("hit wall");
-            Debug.Log(nextChange);
         }
         
         //change direction

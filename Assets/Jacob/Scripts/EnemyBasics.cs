@@ -13,7 +13,8 @@ public class EnemyBasics : MonoBehaviour
     public static int enemyDown = 0;
 
     //Sorry, Jacob, for modifying your code, but it was the only way I could figure this out without causing a ton of bugs. -Marc
-    public PlayerMovement player; //Player object reference.
+    private GameObject playerObject;
+    private PlayerMovement player; //Player object reference.
     public int enemyDamage = -5; //Amount of damage enemy should deal.
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +26,14 @@ public class EnemyBasics : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        //get player object and pull script from it
+        playerObject = GameObject.FindWithTag("Player");
+    
+        if (playerObject != null)
+        {
+            player = playerObject.GetComponent<PlayerMovement>();
+        }
 
     }
     
@@ -53,6 +62,7 @@ public class EnemyBasics : MonoBehaviour
     //Collide with player, check if enemy should be destroyed.
     void OnCollisionEnter2D(Collision2D collide){
         if(collide.gameObject.tag == "Player"){
+            Debug.Log("contacted player");
             if (player.enemyHurt() == true){
                 killEnemy();
             }else{
