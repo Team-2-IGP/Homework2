@@ -48,6 +48,9 @@ TagManager:
   - name: GroundVisuals
     uniqueID: 3622965303
     locked: 0
+  - name: ObjectVisuals
+    uniqueID: 578357295
+    locked: 0
   - name: WaterVisuals
     uniqueID: 1692890479
     locked: 0
