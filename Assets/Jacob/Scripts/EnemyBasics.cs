@@ -20,6 +20,7 @@ public class EnemyBasics : MonoBehaviour
     void Start()
     {
         NumEnemies.Instance.addEnemy();
+        
         enemyTotal++;
 
         //grab other elements attached to this GO for use
@@ -47,6 +48,7 @@ public class EnemyBasics : MonoBehaviour
     public void killEnemy(){
         AudioManager.Instance.PlaySFX(AudioManager.Instance.EnemyKillSound);
         NumEnemies.Instance.removeEnemy();
+        Score.Instance.changeScore(50);
         enemyDown++;
         sr.enabled = false;
         rb.simulated = false;

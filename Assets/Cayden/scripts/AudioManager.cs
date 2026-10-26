@@ -19,14 +19,18 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+            
         }
         Instance = this;
     }
+
     public void PlaySFX(AudioClip clip, float volume = 1f)
     {
         if (clip != null && sfxSource != null)
         {
             sfxSource.PlayOneShot(clip, volume);
+            //Debug.Log($"[SFX Play] Clip: {clip.name} | Object: {gameObject.name} (Instance ID: {GetEntityId()})", this);
+   
         }
     }
 }

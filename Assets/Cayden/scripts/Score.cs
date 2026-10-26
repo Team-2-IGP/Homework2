@@ -6,7 +6,7 @@ public class Score : MonoBehaviour
     public static Score Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    private int currentScore = 0;
+    private static int currentScore = 0;
 
     public int CurrentScore => currentScore;
 
@@ -22,12 +22,15 @@ public class Score : MonoBehaviour
 
     private void Start()
     {
+        currentScore = 0;
         UpdateUI();
     }
 
     public void changeScore(int points)
     {
         currentScore += points;
+        if(currentScore < 0)
+            currentScore = 0;
         UpdateUI();
     }
 
@@ -43,5 +46,6 @@ public class Score : MonoBehaviour
         {
             scoreText.text = $"Score: {currentScore}";
         }
+
     }
 }

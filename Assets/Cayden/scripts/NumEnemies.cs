@@ -6,7 +6,7 @@ public class NumEnemies : MonoBehaviour
     public static NumEnemies Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI EnemyText;
-    private int numEnemiesLeft = 0;
+    private int numEnemiesLeft = -1;
 
     public int CurrentEnemies => numEnemiesLeft;
 
@@ -27,13 +27,13 @@ public class NumEnemies : MonoBehaviour
 
     public void addEnemy()
     {
-        numEnemiesLeft += 1;
+        numEnemiesLeft++;
         UpdateEnemyCounter();
     }
 
     public void removeEnemy()
     {
-        numEnemiesLeft -= 1;
+        numEnemiesLeft--;
         if (numEnemiesLeft <= 0)
         {
             SceneManager.LoadScene("WinScreen");

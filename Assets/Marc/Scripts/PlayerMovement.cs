@@ -94,9 +94,11 @@ public class PlayerMovement : MonoBehaviour
     public void changeHP(int hpChange){
         if(hpChange < 0){
             AudioManager.Instance.PlaySFX(AudioManager.Instance.DamageSound);
+            Score.Instance.changeScore(-3);
         } else
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.healthpickupSound);
+            Score.Instance.changeScore(+5);
         }
         curHP += hpChange;
         HPView.SetHealth(curHP);
@@ -106,5 +108,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void killPlayer(){
         SceneManager.LoadScene("DeathScreen");
+
     }
 }

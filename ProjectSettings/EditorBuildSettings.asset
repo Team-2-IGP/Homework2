@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Cayden/Scenes/TitleScreen.unity
     guid: bf9e97335842dc74eade9997281412d4
+  - enabled: 1
+    path: Assets/Cayden/Scenes/WinScreen.unity
+    guid: 1f7450c9237c81a438e159ac79d7be76
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: fbd74aadc02a9384884a12ba60caa208, type: 3}

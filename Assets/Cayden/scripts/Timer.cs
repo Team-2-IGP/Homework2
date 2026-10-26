@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 
 
+
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
@@ -22,9 +23,13 @@ public class Timer : MonoBehaviour
         if (currentSecond != lastDisplayedSecond)
         {
             lastDisplayedSecond = currentSecond;
+            if(lastDisplayedSecond % 10 == 0 && lastDisplayedSecond != 0)
+                Score.Instance.changeScore(-10);
             UpdateTimerDisplay(currentSecond);
         }
     }
+
+    private int getTime() => lastDisplayedSecond;
 
     private void UpdateTimerDisplay(int totalSeconds)
     {
