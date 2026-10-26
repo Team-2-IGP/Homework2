@@ -19,6 +19,7 @@ public class EnemyBasics : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        NumEnemies.Instance.addEnemy();
         enemyTotal++;
 
         //grab other elements attached to this GO for use
@@ -45,6 +46,7 @@ public class EnemyBasics : MonoBehaviour
 
     public void killEnemy(){
         AudioManager.Instance.PlaySFX(AudioManager.Instance.EnemyKillSound);
+        NumEnemies.Instance.removeEnemy();
         enemyDown++;
         sr.enabled = false;
         rb.simulated = false;

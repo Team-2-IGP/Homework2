@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class NumEnemies : MonoBehaviour
 {
@@ -24,15 +25,19 @@ public class NumEnemies : MonoBehaviour
         UpdateEnemyCounter();
     }
 
-    private void addEnemy()
+    public void addEnemy()
     {
         numEnemiesLeft += 1;
         UpdateEnemyCounter();
     }
 
-    private void removeEnemy()
+    public void removeEnemy()
     {
         numEnemiesLeft -= 1;
+        if (numEnemiesLeft <= 0)
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
         UpdateEnemyCounter();
     }
 
