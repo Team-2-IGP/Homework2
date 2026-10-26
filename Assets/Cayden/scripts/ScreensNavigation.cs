@@ -26,6 +26,6 @@ public class SceneNavigation : MonoBehaviour
 
      public void BackToMenu()
     {
-        SceneManager.LoadScene("mainMenu");
+        SceneManager.LoadScene("TitleScreen");
     }
 }

@@ -98,6 +98,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void killPlayer(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("DeathScreen");
     }
 }
