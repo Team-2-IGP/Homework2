@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Jump if player is on ground
     private void Jump(){
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.JumpSound);
         if (coyoteTime > 0.0f){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpd);
             coyoteTime = 0.0f;
@@ -91,6 +92,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void changeHP(int hpChange){
+        if(hpChange < 0){
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.DamageSound);
+        } else
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.healthpickupSound);
+        }
         curHP += hpChange;
         HPView.SetHealth(curHP);
         if (curHP <= 0) { killPlayer(); }

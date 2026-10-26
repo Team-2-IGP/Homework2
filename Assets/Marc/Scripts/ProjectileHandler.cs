@@ -16,6 +16,7 @@ public class ProjectileHandler : MonoBehaviour
     public LayerMask playerLayer;
 
     void Start(){
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.shootSound);
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         

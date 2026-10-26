@@ -44,6 +44,7 @@ public class EnemyBasics : MonoBehaviour
     }
 
     public void killEnemy(){
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.EnemyKillSound);
         enemyDown++;
         sr.enabled = false;
         rb.simulated = false;
