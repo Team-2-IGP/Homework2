@@ -52,9 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
     //Move player left or right
     private void Update(){
-        if ((moveDir < -0.1) && (lWallHit)) { moveDir = 0.0f; }
-        if ((moveDir > 0.1) && (rWallHit)) { moveDir = 0.0f; }
-        rb.linearVelocity = new Vector2(moveDir * moveSpd, rb.linearVelocity.y);
+        float actualMoveDir = moveDir; // moveDir is the input; actualMoveDir is the actual direction we are going to go
+
+        if ((actualMoveDir < -0.1) && (lWallHit)) { actualMoveDir = 0.0f; }
+        if ((actualMoveDir > 0.1) && (rWallHit)) { actualMoveDir = 0.0f; }
+
+        rb.linearVelocity = new Vector2(actualMoveDir * moveSpd, rb.linearVelocity.y);
     }
 
     //Check if player is on ground and update onGround accordingly
@@ -70,8 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Jump if player is on ground
     private void Jump(){
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.JumpSound);
         if (coyoteTime > 0.0f){
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.JumpSound);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpd);
             coyoteTime = 0.0f;
         }
