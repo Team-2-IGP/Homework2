@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public int curHP = 100;
     public int maxHP = 100;
     public HealthBar HPView;
+
+    public int ammoCount = 0;
+    public TextMeshProUGUI ammoText;
 
     public float moveSpd = 8f;
     public float jumpSpd = 14f;
@@ -112,5 +116,11 @@ public class PlayerMovement : MonoBehaviour
     private void killPlayer(){
         SceneManager.LoadScene("DeathScreen");
 
+    }
+
+    public void AddAmmo(int amount)
+    {
+        ammoCount += amount;
+        ammoText.text = "Ammo: " + ammoCount;
     }
 }
