@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
 
     public int ammoCount = 0;
     public TextMeshProUGUI ammoText;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
+    private float facingDir = 1f;
 
     public float moveSpd = 8f;
     public float jumpSpd = 14f;
@@ -51,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         input.Player.Jump.performed += ctx => Jump();
         input.Player.Jump.canceled += ctx => JumpCancel();
 
+        input.Player.Shoot.performed += ctx => Shoot();
+
         input.Enable();
     }
 
@@ -62,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
         if ((actualMoveDir > 0.1) && (rWallHit)) { actualMoveDir = 0.0f; }
 
         rb.linearVelocity = new Vector2(actualMoveDir * moveSpd, rb.linearVelocity.y);
+
+        // Used for shooting direction
+        if (actualMoveDir > 0.1f) { facingDir = 1f; }
+        else if (actualMoveDir < -0.1f) { facingDir = -1f; }
     }
 
     //Check if player is on ground and update onGround accordingly
@@ -122,5 +131,18 @@ public class PlayerMovement : MonoBehaviour
     {
         ammoCount += amount;
         ammoText.text = "Ammo: " + ammoCount;
+    }
+
+    private void Shoot()
+    {
+        if (ammoCount > 0)
+        {
+            ammoCount--;
+            if (ammoText != null) { 
+                ammoText.text = "Ammo: " + ammoCount; 
+            }
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletPrefab.transform.rotation);
+            bullet.GetComponent<Bullet>().Setup(facingDir);
+        }
     }
 }
