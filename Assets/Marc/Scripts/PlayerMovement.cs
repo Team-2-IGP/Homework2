@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool lWallHit;
     private bool rWallHit;
     private float coyoteTime = 5.0f;
-    private float moveDir = 0.0f;
+    public float moveDir = 0.0f;
 
     public PlayerInput input;
     public Transform groundCheckA;
